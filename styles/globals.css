@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+html, body, #__next {
+  height: 100%;
+}
+
+:root {
+  --brand: #0066FF;
+  --bg: #F8FAFC;
+}
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+/* ================= 3D PERSPECTIVE & TRANSFORMS ================= */
+.perspective-800 { perspective: 800px; }
+.perspective-1000 { perspective: 1000px; }
+.perspective-1500 { perspective: 1500px; }
+.perspective-2000 { perspective: 2000px; }
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* ================= 3D KEYFRAME ANIMATIONS ================= */
+
+/* Floating 3D Levitation */
+@keyframes float3D {
+  0% {
+    transform: translateY(0px) rotateZ(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotateZ(1.5deg) rotateX(4deg);
+  }
+  50% {
+    transform: translateY(-16px) rotateZ(-1deg) rotateX(6deg);
+  }
+  75% {
+    transform: translateY(-8px) rotateZ(-2deg) rotateX(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotateZ(0deg) rotateX(0deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float3D 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float3D 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float3D 7s ease-in-out 1.5s infinite;
+}
+
+/* Continuous 3D Phone Hover */
+@keyframes phoneHover3D {
+  0% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) translateY(0px);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-14deg) rotateX(6deg) translateY(-12px);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(-18deg) rotateX(10deg) translateY(0px);
+  }
+}
+
+.animate-phone-3d {
+  animation: phoneHover3D 5s ease-in-out infinite;
+}
+
+/* Radar pulse wave for video call */
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar-wave {
+  animation: radarPulse 2s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+/* 3D Pulse Glow */
+@keyframes glowPulse3D {
+  0%, 100% {
+    box-shadow: 0 10px 30px -5px rgba(0, 102, 255, 0.3), 0 0 20px rgba(0, 102, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 20px 45px -5px rgba(0, 102, 255, 0.5), 0 0 35px rgba(0, 102, 255, 0.3);
+  }
+}
+
+.animate-glow-3d {
+  animation: glowPulse3D 3.5s ease-in-out infinite;
+}
+
+/* 3D Modal Opening */
+@keyframes modalIn3D {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateX(14deg) translateY(40px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateX(0deg) translateY(0px) scale(1);
+  }
+}
+
+.modal-anim-3d {
+  animation: modalIn3D 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Audio wave equalizer bars */
+@keyframes soundWave {
+  0%, 100% { height: 4px; }
+  50% { height: 18px; }
+}
+
+.wave-bar-1 { animation: soundWave 0.7s ease-in-out infinite; }
+.wave-bar-2 { animation: soundWave 0.5s ease-in-out 0.15s infinite; }
+.wave-bar-3 { animation: soundWave 0.9s ease-in-out 0.3s infinite; }
+.wave-bar-4 { animation: soundWave 0.6s ease-in-out 0.1s infinite; }
+
+/* Subtle Holographic Shimmer */
+@keyframes holoShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.holo-card-shine {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 45%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.25) 55%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+}
+
+/* Custom scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================= Custom 3D / Glow Utilities ================= */
+
+.floaty {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 450ms cubic-bezier(.2,.9,.3,1), box-shadow 450ms;
+  animation: float3D 6s ease-in-out infinite;
+}
+
+.card-3d {
+  perspective: 1200px;
+}
+
+.card-3d .card-inner {
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1);
+}
+
+.card-3d:hover .card-inner {
+  transform: rotateX(6deg) rotateY(-6deg) translateY(-6px);
+}
+
+.card-media {
+  transform-origin: center center;
+  transition: transform 520ms cubic-bezier(.2,.9,.3,1);
+}
+
+.card-3d:hover .card-media {
+  transform: translateZ(24px) scale(1.02);
+}
+
+.card-badge {
+  transform: translateZ(40px);
+}
+
+.btn-glow {
+  box-shadow: 0 8px 30px -8px rgba(0,102,255,0.28), 0 2px 12px -6px rgba(0,102,255,0.12);
+  transition: box-shadow 300ms ease, transform 160ms ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 20px 60px -12px rgba(0,102,255,0.36), 0 8px 30px -8px rgba(0,102,255,0.18);
+  transform: translateY(-2px);
+}
+
+.modal-anim { animation: modalIn3D 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* small helper for interactive hover tilt */
+.tilt-hover:hover { transform: perspective(900px) rotateX(4deg) rotateY(-4deg); }
